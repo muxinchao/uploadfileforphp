@@ -1,0 +1,24 @@
+{
+    "name": "muxinchao/uploadfileforphp",
+    "description": "PHP文件上传",
+    "type": "library",
+    "authors": [
+        {
+            "name": "muxinchao",
+            "email": "1046072048@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "php": ">=5.4"
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Muxinchao\\": "src/"
+        }
+    }
+}
