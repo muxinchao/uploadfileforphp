@@ -13,12 +13,7 @@ Trait PublicFunction
 		if (is_array($file) &&  count($file) === 0) {
 			return false;
 		}
-		if (is_array($file) && count($file) === 1) {
-			foreach ($file as $key => $value) {
-				return $value;
-			}
-		}
-		if (is_array($file) && count($file) > 1) {
+		if (is_array($file) && count($file) >= 1) {
 			$newFile = [];
 			foreach ($file as $key => $value) {
 				$newFile[$key] = $value;
@@ -58,6 +53,10 @@ Trait PublicFunction
 	 */
 	protected function getRootDir()
 	{
+		//不可写返回错误
+		if (!is_writable($_SERVER['DOCUMENT_ROOT'])) {
+			return false;
+		}
 		return $_SERVER['DOCUMENT_ROOT'];
 	}
 	/**
@@ -79,19 +78,18 @@ Trait PublicFunction
 			$path = '/uploadfiles/images';
 		}
 		//去掉收尾 / 正斜线
-		// $path = explode('/', trim($path, '/'));
-		$saveDir = $this->getRootDir() . $path;
-		if (!is_dir($saveDir)) {
-			mkdir($saveDir, 0777, true);
-			$res = chmod($saveDir, 0777);
-			var_dump($res);
+		$path = explode('/', trim($path, '/'));
+		$pathStr = $this->getRootDir();
+		foreach ($path as $key => $value) {
+			if (!is_dir($pathStr . '/' . $value)) {
+				mkdir($pathStr . '/' . $value);
+				chmod($pathStr . '/' . $value, 0777);
+				$pathStr = $pathStr . '/' . $value;
+			} else {
+				$pathStr = $pathStr . '/' . $value;
+			}
 		}
-		// foreach ($path as $key => $value) {
-		// 	if (!is_dir($rootDir . '/' . $value)) {
-		// 		mkdir($rootDir . '/' . $value, 0777);
-		// 		$pa =
-		// 	}
-		// }
+		return $pathStr;
 	}
 
 
