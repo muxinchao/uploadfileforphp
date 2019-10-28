@@ -3,30 +3,29 @@ namespace Muxinchao;
 
 class UploadOne
 {
-	protected $fileName;
+	use PublicFunction;
+	
+	// protected $allowedExts = ['jpg', 'gif'];
 
-	protected $allowedExts = ['jpg', 'gif'];
-
-	protected function getFileName($file)
-	{
-		if (is_array($file) && count($file) === 1) {
-			foreach ($file as $key => $value) {
-				$this->fileName = $key;
-			}
-			return $file[$this->fileName];
-		} 
-		return false;
-	}
-	protected function getAllowExts($name)
-	{
-		$ext = substr(strchr($name, '.'), 1);
-		return $ext;
-	}
+	// protected function getFileName($file)
+	// {
+	// 	if (is_array($file) && count($file) === 1) {
+	// 		foreach ($file as $key => $value) {
+	// 			return $value;
+	// 		}
+	// 	} 
+	// 	return false;
+	// }
+	// protected function getAllowExts($name)
+	// {
+	// 	$ext = substr(strchr($name, '.'), 1);
+	// 	return $ext;
+	// }
 
 	public function uploadOne($file)
 	{
 		//获取上传文件信息
-		$file = $this->getFileName($file);
+		$file = $this->getFileInfo($file);
 		if (!$file) {
 			return json_encode(['code' => 40001, 'message' => '您没有上传文件或者上传多个文件']);
 		}

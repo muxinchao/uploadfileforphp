@@ -1,2 +1,5 @@
 <?php 
-echo 'aa';
+return [
+	'allow_exts' => ['gif', 'jpg'],
+	'path' => '/uploadfiles/images',
+];
