@@ -10,17 +10,17 @@
 ## 使用
 1.安装包
 
-``
-$ composer require muxinchao/uploadfileforphp:dev-master
+
+	$ composer require muxinchao/uploadfileforphp:dev-master
 
 2.在项目中使用
 
-``
-use Muxinchao;
-$file = $_FILES;
-$obj = new Upload();
-$res = $obj->upload($file);
-var_dump($res);
+
+	use Muxinchao;
+	$file = $_FILES;
+	$obj = new Upload();
+	$res = $obj->upload($file);
+	var_dump($res);
 
 
 
