@@ -13,9 +13,13 @@
 
 2.在项目中使用
 	use Muxinchao;
+
 	$file = $_FILES;
+
 	$obj = new Upload();
+
 	$res = $obj->upload($file);
+	
 	var_dump($res);
 
 
